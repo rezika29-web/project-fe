@@ -1,0 +1,113 @@
+@import "@fontsource/source-sans-3"; /* Importing Source Sans 3 font */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1D1E55;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/*****************************/
+/* Ant design customizations */
+/*****************************/
+
+html, body, .ant-typography, .ant-btn, .ant-input {
+  font-family: var(--font-source-sans), sans-serif;
+}
+
+.ant-layout-header {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border-bottom: solid 1px #cccccc;
+}
+
+.ant-layout-has-sider, .ant-layout-content {
+  background-color: #f6f6f9 !important;
+}
+
+.ant-layout-content {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.ant-breadcrumb {
+  background-color: #ffffff;
+  margin: 0 !important;
+  padding: 10px 40px;
+}
+
+.ant-breadcrumb li {
+  font-weight: 600;
+}
+
+.ant-breadcrumb li:last-child {
+  color: #2E7628 !important;
+}
+
+.ant-menu-item-selected {
+  background-color: #35378C !important;
+}
+
+/* Main menu background */
+.custom-menu.ant-menu, .ant-menu-sub {
+  background-color: #1D1E55 !important;
+  font-weight: 600 !important;
+}
+
+/* Submenu background */
+.custom-menu.ant-menu-dark .ant-menu-sub {
+  background-color: #1D1E55 !important;
+}
+
+/* Selected menu item */
+.custom-menu.ant-menu-dark .ant-menu-item-selected {
+  background-color: #35378C !important;
+}
+
+/* Hover state for menu items */
+.custom-menu.ant-menu-dark .ant-menu-item:hover,
+.custom-menu.ant-menu-dark .ant-menu-submenu-title:hover {
+  background-color: rgba(53, 55, 140, 0.7) !important;
+}
+
+/* Active submenu title */
+.custom-menu.ant-menu-dark .ant-menu-submenu-selected > .ant-menu-submenu-title {
+  color: #fff;
+  background-color: #35378C !important;
+}
+
+.ant-menu-root {
+  padding-top: 40px;
+}
+
+.ant-menu-title-content, .ant-menu-item-group-title {
+  font-weight: 600 !important;
+}
+
+/*SSO Biro Umum */
+.mainContent {
+  padding: 40px;
+}
