@@ -259,10 +259,10 @@ const TabelKebutuhan: React.FC = () => {
         <h1 className="text-4xl font-bold">SSO BIRO UMUM</h1>
         </div>
         <div className='flex justify-center'>
-          <CustomButton className="text-[#2E7628] mr-5 bg-white border border-gray-300 hover:bg-gray-100" onClick={() => window.location.href = "https://www.facebook.com"}>
+          <CustomButton className="text-[#2E7628] mr-5 bg-white border border-gray-300 hover:bg-gray-100" onClick={() => window.open("https://www.facebook.com", "_blank")}>
             Simonevkin
           </CustomButton>
-          <CustomButton className="text-[#2E7628] mr-5 bg-white border border-gray-300 hover:bg-gray-100" onClick={() => window.location.href = "https://www.facebook.com"}>
+          <CustomButton className="text-[#2E7628] mr-5 bg-white border border-gray-300 hover:bg-gray-100" onClick={() => window.open("https://www.facebook.com", "_blank")}>
             Sipintasplus
           </CustomButton>
           <CustomButton 
