@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { Table, Input, Select, Pagination, ConfigProvider, Button, theme } from 'antd';
-import { SearchOutlined, LeftOutlined, RightOutlined, ReloadOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { SearchOutlined, ReloadOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import type { PaginationProps, ButtonProps } from 'antd';
-import { Metadata } from 'next';
 import { api } from '@/lib/api';
 import { useRouter } from 'next/navigation';
 

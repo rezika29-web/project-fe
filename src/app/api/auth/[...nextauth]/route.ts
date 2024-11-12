@@ -1,13 +1,25 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import jwt from "jsonwebtoken";
+import { JWT } from "next-auth/jwt";
+
+declare module "next-auth" {
+  interface Session extends DefaultSession {
+    accessToken?: string;
+    expiresAt?: number;
+  }
+
+  interface User {
+    accessToken: string;
+    expiresAt: number;
+  }
+}
 
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: { label: "Nip", type: "text" },
+        nip: { label: "Nip", type: "text" },
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
@@ -50,7 +62,7 @@ const handler = NextAuth({
     },
     async redirect({ url, baseUrl }) {
       // Allows relative callback URLs
-      if (url.startsWith("/")) return `${baseUrl}${url}`
+      if (url.startsWith("/adminhome/sso")) return `${baseUrl}${url}`
       // Allows callback URLs on the same origin
       else if (new URL(url).origin === baseUrl) return url
       return baseUrl

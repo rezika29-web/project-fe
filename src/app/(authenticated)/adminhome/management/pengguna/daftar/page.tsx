@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import type { FC } from 'react';
-import RouterSSO from './RouterSSO';
+import TabelPengguna from './TabelPengguna';
 
 export const metadata: Metadata = {
-  title: 'BIRO UMUM',
+  title: 'Pengguna',
 }
 
 const Page: FC = () => {
-  return <RouterSSO />
+  return <TabelPengguna />
 }
 
 export default Page

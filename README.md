@@ -1,4 +1,4 @@
-Ini adalah web-app untuk BPSDM Kementrian Perhubungan.
+Ini adalah web-app untuk Biro Umum Pemprov Sumatera Barat.
 Menggunakan Next.js dengan app-routing di dalam folder `src/app/` untuk memudahkan routing dan layout splicing.
 
 ## Cara Memulai

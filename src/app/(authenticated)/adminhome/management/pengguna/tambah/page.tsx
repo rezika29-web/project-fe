@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import type { FC } from 'react';
-import RouterSSO from './RouterSSO';
+import PenggunaForm from '@/components/Pengguna/PenggunaForm';
 
 export const metadata: Metadata = {
-  title: 'BIRO UMUM',
+  title: 'Tambah Pengguna',
 }
 
 const Page: FC = () => {
-  return <RouterSSO />
+  return <PenggunaForm mode="add" />
 }
 
 export default Page

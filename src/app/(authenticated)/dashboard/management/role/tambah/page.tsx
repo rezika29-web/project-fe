@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import type { FC } from 'react';
-import RouterSSO from './RouterSSO';
+import RoleForm from '@/components/Role/RoleForm';
 
 export const metadata: Metadata = {
-  title: 'BIRO UMUM',
+  title: 'Tambah Role',
 }
 
 const Page: FC = () => {
-  return <RouterSSO />
+  return <RoleForm mode="add" />
 }
 
 export default Page

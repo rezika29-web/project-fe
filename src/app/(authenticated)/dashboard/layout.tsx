@@ -5,12 +5,8 @@ import { BreadcrumbProvider } from '@/contexts/NstBreadcrumbContext';
 import { useSession, signOut } from 'next-auth/react';
 
 import React from 'react';
-import { Layout, Menu, theme, Avatar, Badge, Breadcrumb } from 'antd';
+import { Layout, Menu, theme, Avatar, Badge, Breadcrumb, Dropdown } from 'antd';
 import {
-  DashboardOutlined,
-  TeamOutlined,
-  SwapOutlined,
-  FileTextOutlined,
   UserOutlined,
   BarChartOutlined,
   FileSearchOutlined,
@@ -21,12 +17,23 @@ import {
   FormOutlined,
   FileProtectOutlined,
   BellOutlined,
+  DownOutlined,
 } from '@ant-design/icons';
 import Image from 'next/image';
+import { redirect } from 'next/navigation';
+import Link from 'next/link';
+import { useRouter } from "next/navigation";
+import { useUserPermissions } from "@/hooks/useUserPermissions";
+
+
 
 const { Header, Sider, Content } = Layout;
 
 const DashboardLayoutContent = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter();
+
+  const userInfo = useUserPermissions();
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -43,8 +50,33 @@ const DashboardLayoutContent = ({ children }: { children: React.ReactNode }) => 
   }
 
   const handleLogout = async () => {
-    await signOut({ callbackUrl: '/login' });
+    await signOut();
   };
+  const userMenu = (
+    <Menu>
+      <Menu.Item key="homepage" onClick={() => router.push("/user/home")}>
+        Home Page
+      </Menu.Item>
+      <Menu.Item key="dashboard" onClick={() => router.push("/adminhome/sso")}>
+        Router
+      </Menu.Item>
+      <Menu.Item key="logout" onClick={handleLogout}>
+        Logout
+      </Menu.Item>
+    </Menu>
+  );
+  const CustomButton: React.FC<{
+    children: React.ReactNode;
+    className?: string;
+    onClick?: () => void;
+  }> = ({ children, className = "flex", onClick }) => (
+    <button
+      className={`flex px-4 py-2 rounded font-semibold transition-colors duration-200 ${className}`}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
 
   return (
     <NstAuthWrapper>
@@ -52,28 +84,34 @@ const DashboardLayoutContent = ({ children }: { children: React.ReactNode }) => 
         <Header className="bg-white flex items-center justify-between px-4">
           <div className="flex items-center">
             <Image
-              src="/bpsdm-images/logo-bpsdm.png"
-              alt="Logo BPSDM"
+              src="/biro-images/logo-pemprov.png"
+              alt="Logo Pemprov"
               width={40}
               height={40}
             />
             <div className="ml-4">
-              <div className="text-xs font-bold text-[#92939D]">SISTEM MANAGEMENT SSO BIRO UMUM</div>
+              <div className="text-xs font-bold text-[#92939D]">SISTEM LAYANAN BIRO UMUM</div>
               {/* <div className="text-sm font-bold">Badan Pengembangan Sumber Daya Manusia Perhubungan</div> */}
             </div>
           </div>
-          <div className="flex items-center">
-            <div className="mr-4 text-right">
-              <div className="text-xs font-semibold">Admin-BIRO-UMUM</div>
-              <div className="text-xs">ADMIN</div>
-            </div>
-            <Avatar size="large" icon={<UserOutlined />} className="mr-5" onClick={handleLogout} />
-            <div className="w-[60px] h-[60px] border border-[#EFF0F1] rounded-lg flex items-center justify-center">
-              <Badge count={5}>
-                <BellOutlined style={{ fontSize: '20px' }} />
-              </Badge>
-            </div>
-          </div>
+          {userInfo ? (
+          <Dropdown overlay={userMenu} trigger={["click"]}>
+            <CustomButton
+              className="text-sm px-2 py-1 text-white bg-red-500 hover:bg-red-700 flex items-center"
+              onClick={(e) => e.preventDefault()}
+            >
+              {userInfo?.user.firstName} {userInfo?.user.lastName}{" "}
+              <DownOutlined className="ml-1" />
+            </CustomButton>
+          </Dropdown>
+        ) : (
+          <CustomButton
+            className="text-sm px-2 py-1 text-white bg-[#2E7628] hover:bg-green-700"
+            onClick={() => router.push("/login")}
+          >
+            Login
+          </CustomButton>
+        )}
         </Header>
         <Layout>
           <Sider
@@ -89,56 +127,20 @@ const DashboardLayoutContent = ({ children }: { children: React.ReactNode }) => 
               defaultSelectedKeys={['kebutuhan-talent']}
               items={[
                 {
-                  key: 'pro-talent',
-                  label: 'PRO TALENT',
+                  key: 'management',
+                  label: 'Setting',
                   type: 'group',
                   children: [
                     {
-                      key: 'kebutuhan-talent',
-                      icon: <BarChartOutlined />,
-                      label: 'Kebutuhan Talent',
-                    },
-                    {
-                      key: 'identifikasi-calon-talent',
+                      key: 'pengguna',
                       icon: <UserOutlined />,
-                      label: 'Identifikasi Calon Talent',
+                      label: <Link href="/dashboard/management/pengguna/daftar">Pengguna</Link>,
+
                     },
                     {
-                      key: 'pemetaan-talent',
-                      icon: <AimOutlined />,
-                      label: 'Pemetaan Talent',
-                    },
-                    {
-                      key: 'assessment',
-                      icon: <FileSearchOutlined />,
-                      label: 'Assessment',
-                      children: [
-                        {
-                          key: 'penilaian-360',
-                          icon: <RotateRightOutlined />,
-                          label: 'Penilaian 360',
-                        },
-                        {
-                          key: '9box',
-                          icon: <AppstoreOutlined />,
-                          label: '9Box',
-                        },
-                        {
-                          key: 'skp-dp3',
-                          icon: <FormOutlined />,
-                          label: 'SKP dan DP3',
-                        },
-                        {
-                          key: 'nilai-assessment',
-                          icon: <FileProtectOutlined />,
-                          label: 'Nilai Assessment',
-                        },
-                      ],
-                    },
-                    {
-                      key: 'penetapan-talent',
-                      icon: <CheckSquareOutlined />,
-                      label: 'Penetapan Talent',
+                      key: 'role',
+                      icon: <BarChartOutlined />,
+                      label: <Link href="/dashboard/management/role/daftar">Role</Link>,
                     },
                   ],
                 },
@@ -157,8 +159,8 @@ const DashboardLayoutContent = ({ children }: { children: React.ReactNode }) => 
             <Breadcrumb
               style={{ margin: '16px 0' }}
               items={[
-                { title: 'Pro Talent' },
-                { title: 'Kebutuhan Talent' },
+                { title: 'Settings' },
+                { title: 'Pengguna' },
                 { title: 'Daftar' }
               ]}
             />

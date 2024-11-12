@@ -2,48 +2,57 @@
 
 import { useRouter } from 'next/navigation';
 import { signIn } from "next-auth/react";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import Image from 'next/image';
-import { Form, Input, Button } from 'antd';
-import { UserOutlined, LockOutlined, EyeTwoTone, EyeInvisibleOutlined } from '@ant-design/icons';
 
 export default function Login() {
   const router = useRouter();
+  const [showError, setShowError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+
+
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
+    setShowError(false);
     const formData = new FormData(e.currentTarget);
     console.log("datainput", formData);
     
     const result = await signIn("credentials", {
-      username: formData.get("nip"),
+      nip: formData.get("nip"),
       password: formData.get("password"),
       redirect: false,
     });
     if (result?.error) {
-      // Handle error
+      setShowError(true);
+      setErrorMessage("wkwkwk");
+      setIsLoading(false);
+      
     } else {
-      router.replace('/adminhome/sso/router');
+      router.replace('/adminhome/sso');
     }
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-indigo-900 bg-cover bg-center" style={{backgroundImage: "url('/biro-images/auth/bendi.jpg')"}}>
-      <header className="p-4">
+      <header className="p-4 flex flex-row">
         <Image src="/biro-images/logo-pemprov.png" alt="Logo" width={40} height={40} />
 
-        <h1 className="text-white text-sm">SISTEM SSO BIRO UMUM</h1>
+        <h1 className="text-white text-sm justify-center align-middle ml-5 py-3" >SISTEM LAYANAN BIRO UMUM</h1>
         {/* <h2 className="text-white text-xs">Badan Pengembangan Sumber Daya Manusia Perhubungan</h2> */}
       </header>
 
       <main className="flex-grow flex items-center justify-center px-4">
         <div className="w-full max-w-5xl flex">
-          <div className="w-1/2 bg-white rounded-l-lg shadow-lg p-8" style={{backgroundImage: "url('/bpsdm-images/auth/aura-background.png')", backgroundSize: 'cover', backgroundPosition: 'center'}}>
+          <div className="w-1/2 bg-white rounded-l-lg shadow-lg p-8" style={{backgroundImage: "url('/biro-images/auth/aura-background.png')", backgroundSize: 'cover', backgroundPosition: 'center'}}>
             <div className="flex items-center mb-6">
               <div className="bg-indigo-600 rounded-full p-2 mr-3">
                 <Image src="/biro-images/auth/arrow.png" alt="Login" width={24} height={24} />
               </div>
-              <h2 className="text-2xl font-bold">Login</h2>
+              <h2 className="text-2xl font-bold" style={{color:'black',width:'bold'}}>Login</h2>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -61,12 +70,12 @@ export default function Login() {
               <button type="submit" className="w-full bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300 transition duration-200">Login →</button>
             </form>
           </div>
-          <div className="w-1/2 bg-indigo-800 rounded-r-lg p-8 flex flex-col justify-between">
-            <div className='flex-col justify-center justify-items-center'>
+          <div className="w-1/2 bg-indigo-800 rounded-r-lg p-8 flex-col flex  justify-center align-middle items-center">
+            {/* <div className='flex-col bg-black justify-center items-center align-middle justify-items-center'> */}
               <Image src="/biro-images/logo-pemprov.png" alt="Logo PEMPROV" width={100} height={100} />
-              <h2 className="text-yellow-400 text-2xl font-bold mt-4">SISTEM INFORMASI SSO BIRO UMUM</h2>
+              <h2 className="text-yellow-400 text-2xl font-bold mt-4">SISTEM LAYANAN BIRO UMUM</h2>
               {/* <p className="text-white text-sm mt-2">BADAN PENGEMBANGAN SUMBER DAYA MANUSIA PERHUBUNGAN</p> */}
-            </div>
+            {/* </div> */}
             {/* <div>
               <p className="text-white text-sm mb-4">KONTAK KAMI</p>
               <div className="flex space-x-4">

@@ -16,11 +16,15 @@ export const NstAuthWrapper: React.FC<NstAuthWrapperProps> = ({ children }) => {
   }, []);
 
   if (status === "loading" || !isClient) {
-    return <div>Loading...</div>;
+    return (
+      <div className="p-16">
+        <p>Melakukan pengecekan autentikasi...</p>
+      </div>
+  );
   }
 
   if (!session) {
-    router.push("/dashboard");
+    router.push("/");
     return null;
   }
 

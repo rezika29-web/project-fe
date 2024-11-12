@@ -16,9 +16,16 @@ const CustomButton: React.FC<{ children: React.ReactNode; className?: string; on
 );
 const RouterSSO: React.FC = () => {
   const router = useRouter();
-  // useEffect(() => {
-  //   window.location.reload();
-  // }, []);
+  useEffect(() => {
+    const hasRefreshed = localStorage.getItem('hasRefreshed');
+    if (!hasRefreshed) {
+      localStorage.setItem('hasRefreshed', 'true');
+      window.location.reload();
+    } 
+    // else {
+    //   localStorage.removeItem('hasRefreshed');
+    // }
+  }, []);
 
   return (
     <div className="p-6">
