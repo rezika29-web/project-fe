@@ -33,6 +33,8 @@ const DashboardLayoutContent = ({ children }: { children: React.ReactNode }) => 
   const router = useRouter();
 
   const userInfo = useUserPermissions();
+  console.log("userinfo",userInfo);
+  
 
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -100,7 +102,7 @@ const DashboardLayoutContent = ({ children }: { children: React.ReactNode }) => 
               className="text-sm px-2 py-1 text-white bg-red-500 hover:bg-red-700 flex items-center"
               onClick={(e) => e.preventDefault()}
             >
-              {userInfo?.user.firstName} {userInfo?.user.lastName}{" "}
+              {userInfo?.user.fullName}
               <DownOutlined className="ml-1" />
             </CustomButton>
           </Dropdown>
@@ -114,6 +116,8 @@ const DashboardLayoutContent = ({ children }: { children: React.ReactNode }) => 
         )}
         </Header>
         <Layout>
+          {userInfo?.role.roleName === 'Admin' ? (
+
           <Sider
             width={250}
             style={{
@@ -147,6 +151,35 @@ const DashboardLayoutContent = ({ children }: { children: React.ReactNode }) => 
               ]}
             />
           </Sider>
+          ):(
+            <Sider
+            width={250}
+            style={{
+              background: '#1D1E55',
+            }}
+          >
+            <Menu
+              theme="dark"
+              mode="inline"
+              style={{ background: '#1D1E55' }}
+              defaultSelectedKeys={['kebutuhan-talent']}
+              items={[
+                {
+                  key: 'setting',
+                  label: 'Account',
+                  type: 'group',
+                  children: [
+                    {
+                      key: 'acount',
+                      icon: <UserOutlined />,
+                      label: <Link href="/dashboard/setting/acount/daftar">Akun</Link>,
+                    },
+                  ],
+                },
+              ]}
+            />
+          </Sider>
+          )}
           <Content
             style={{
               margin: '24px 16px',
@@ -156,14 +189,14 @@ const DashboardLayoutContent = ({ children }: { children: React.ReactNode }) => 
               borderRadius: borderRadiusLG,
             }}
           >
-            <Breadcrumb
+            {/* <Breadcrumb
               style={{ margin: '16px 0' }}
               items={[
                 { title: 'Settings' },
                 { title: 'Pengguna' },
                 { title: 'Daftar' }
               ]}
-            />
+            /> */}
 
             <div className="mainContent">
               {children}
@@ -184,5 +217,6 @@ export default function DashboardLayout({
     <BreadcrumbProvider>
       <DashboardLayoutContent>{children}</DashboardLayoutContent>
     </BreadcrumbProvider>
+    
   );
 }

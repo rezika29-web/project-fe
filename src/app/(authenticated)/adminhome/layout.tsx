@@ -63,9 +63,16 @@ const AdminLayoutContent = ({ children }: { children: React.ReactNode }) => {
        <Menu.Item key="homepage" onClick={() => router.push("/user/home")}>
         Home Page
       </Menu.Item>
+      {userInfo?.role?.roleName === 'Admin' ? (
       <Menu.Item key="dashboard" onClick={() => router.push("/dashboard/management/pengguna/daftar")}>
         Dashboard
       </Menu.Item>
+
+      ):(
+        <Menu.Item key="dashboard" onClick={() => router.push("/dashboard/setting/acount/daftar")}>
+        Dashboard
+      </Menu.Item> 
+      )}
       <Menu.Item key="logout" onClick={handleLogout}>
         Logout
       </Menu.Item>
@@ -95,7 +102,7 @@ const AdminLayoutContent = ({ children }: { children: React.ReactNode }) => {
               className="text-sm px-2 py-1 text-white bg-red-500 hover:bg-red-700 flex items-center"
               onClick={(e) => e.preventDefault()}
             >
-              {userInfo?.user.firstName} {userInfo?.user.lastName}{" "}
+              {userInfo?.user.fullName}
               <DownOutlined className="ml-1" />
             </CustomButton>
           </Dropdown>

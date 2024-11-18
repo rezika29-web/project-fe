@@ -38,14 +38,11 @@ const RouterSSO: React.FC = () => {
           <CustomButton className="text-[#2E7628] mr-5 bg-white border border-gray-300 hover:bg-gray-100" onClick={() => window.open("https://simonevkin.setdaprovsumbar.com/login.php", "_blank")}>
             Simonevkin
           </CustomButton>
-          <CustomButton className="text-[#2E7628] mr-5 bg-white border border-gray-300 hover:bg-gray-100" onClick={() => window.open("https://www.facebook.com", "_blank")}>
+          <CustomButton className="text-[#2E7628] mr-5 bg-white border border-gray-300 hover:bg-gray-100" onClick={() => window.open("https://sipintasplus.setdaprovsumbar.com/", "_blank")}>
             Sipintasplus
           </CustomButton>
-          <CustomButton 
-            className="text-white bg-[#2E7628] hover:bg-green-700"
-            onClick={() => router.push('/dashboard/pro-talent/kebutuhan-talent/tambah')}
-          >
-            Sispensu
+          <CustomButton className="text-[#2E7628] mr-5 bg-white border border-gray-300 hover:bg-gray-100" onClick={() => window.open("https://sispensubiroumum.sumbarprov.go.id/", "_blank")}>
+          Sispensu
           </CustomButton>
         </div>
       </div>

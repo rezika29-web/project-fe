@@ -28,7 +28,7 @@ interface PenggunaResponse {
   phoneNumber: string;
   // status: string;
   role: {
-    roleName: string;
+    description: string;
   };
 }
 
@@ -61,20 +61,18 @@ const TabelPengguna: React.FC = () => {
 
   const fetchData = async (page: number, size: number, keyword: string = '') => {
     try {
-      const response = await api.get(`/v1/users?page=${page}&pageSize=${size}${keyword ? `&keyword=${keyword}` : ''}`);
-      const { users, count } = response.data;
-      console.log(response.data);
+      const response = await api.get(`/v1/auth/get/my-account?page=${page}&pageSize=${size}${keyword ? `&keyword=${keyword}` : ''}`);
       
-      console.log(users);
-      
-      const formattedData = users.map((item: PenggunaResponse, index: number) => ({
+      const { userActive, count } = response.data;
+      console.log("safa",response.data.userActive);
+      const formattedData = userActive.map((item: PenggunaResponse, index: number) => ({
         key: ((page - 1) * size + index + 1).toString(),
         id: item.id,
         fullName: item.fullName ,
         nip: item.nip,
         phoneNumber: item.phoneNumber,
         // status: item.status,
-        roleName: item.role.roleName,
+        roleName: item.role.description,
       }));
       setData(formattedData);
       setTotalItems(count);
@@ -237,15 +235,15 @@ const TabelPengguna: React.FC = () => {
         <Breadcrumb
           style={{ margin: '16px 0' }}
           items={[
-            { title: 'Data' },
-            { title: 'Management' },
+            { title: 'Setting' },
+            { title: 'Account' },
             { title: 'Pengguna' },
           ]}
         />
 
         <div className="p-12">
           <div className="flex justify-between items-center mb-6">
-            <Title level={2} style={{ margin: 0 }}>Pengguna</Title>
+            <Title level={2} style={{ margin: 0 }}>Akun</Title>
             <Space>
               {/* <Button 
                 type="primary" 
@@ -254,12 +252,12 @@ const TabelPengguna: React.FC = () => {
               >
                 + Tambah Baru{!canCreate? ' (Tidak ada izin)' : ''}
               </Button> */}
-              <Button 
+              {/* <Button 
                 type="primary" 
                 onClick={handleTambahBaru} 
               >
                 + Tambah Baru
-              </Button>
+              </Button> */}
             </Space>
           </div>
 

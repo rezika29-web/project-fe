@@ -76,7 +76,7 @@ const DashboardLayoutContent = ({
               className="text-sm px-2 py-1 text-white bg-red-500 hover:bg-red-700 flex items-center"
               onClick={(e) => e.preventDefault()}
             >
-              {userInfo?.user.firstName} {userInfo?.user.lastName}{" "}
+              {userInfo?.user.fullName}
               <DownOutlined className="ml-1" />
             </CustomButton>
           </Dropdown>

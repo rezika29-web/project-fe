@@ -20,8 +20,7 @@ type PermissionActions = {
 
 type User = {
   id: string;
-  firstName: string;
-  lastName: string;
+  fullName: string;
   nip: string;
   // profilePictureFile: string;
   // Add other user properties as needed
