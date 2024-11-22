@@ -5,18 +5,10 @@ import { BreadcrumbProvider } from '@/contexts/NstBreadcrumbContext';
 import { useSession, signOut } from 'next-auth/react';
 
 import React from 'react';
-import { Layout, Menu, theme, Avatar, Badge, Breadcrumb, Dropdown } from 'antd';
+import { Layout, Menu, theme,  Dropdown } from 'antd';
 import {
   UserOutlined,
   BarChartOutlined,
-  FileSearchOutlined,
-  CheckSquareOutlined,
-  AimOutlined,
-  RotateRightOutlined,
-  AppstoreOutlined,
-  FormOutlined,
-  FileProtectOutlined,
-  BellOutlined,
   DownOutlined,
 } from '@ant-design/icons';
 import Image from 'next/image';
@@ -40,7 +32,7 @@ const DashboardLayoutContent = ({ children }: { children: React.ReactNode }) => 
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  const { data: session, status } = useSession({
+  const { status } = useSession({
     required: true,
     onUnauthenticated() {
       redirect('/dashboard');
@@ -67,19 +59,20 @@ const DashboardLayoutContent = ({ children }: { children: React.ReactNode }) => 
       </Menu.Item>
     </Menu>
   );
-  const CustomButton: React.FC<{
-    children: React.ReactNode;
+  interface CustomButtonProps {
     className?: string;
-    onClick?: () => void;
-  }> = ({ children, className = "flex", onClick }) => (
-    <button
-      className={`flex px-4 py-2 rounded font-semibold transition-colors duration-200 ${className}`}
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
-
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    children: React.ReactNode;
+  }
+  
+  const CustomButton: React.FC<CustomButtonProps> = ({ className, onClick, children }) => {
+    return (
+      <button className={className} onClick={onClick}>
+        {children}
+      </button>
+    );
+  };
+  
   return (
     <NstAuthWrapper>
       <Layout className="min-h-screen">

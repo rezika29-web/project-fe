@@ -1,6 +1,8 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { JWT } from "next-auth/jwt";
+// import { JWT } from "next-auth/jwt";
+import { DefaultSession } from "next-auth";
+
 
 declare module "next-auth" {
   interface Session extends DefaultSession {
@@ -50,24 +52,23 @@ const handler = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.accessToken = user.accessToken;
-        token.expiresAt = user.expiresAt;
+        token.accessToken = user.accessToken as string; // Pastikan sebagai string
+        token.expiresAt = user.expiresAt as number; // Pastikan sebagai number
       }
       return token;
     },
     async session({ session, token }) {
-      session.accessToken = token.accessToken;
-      session.expiresAt = token.expiresAt;
+      session.accessToken = token.accessToken as string; // Pastikan sebagai string
+      session.expiresAt = token.expiresAt as number; // Pastikan sebagai number
       return session;
     },
     async redirect({ url, baseUrl }) {
-      // Allows relative callback URLs
-      if (url.startsWith("/adminhome/sso")) return `${baseUrl}${url}`
-      // Allows callback URLs on the same origin
-      else if (new URL(url).origin === baseUrl) return url
-      return baseUrl
+      if (url.startsWith("/adminhome/sso")) return `${baseUrl}${url}`;
+      else if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
     },
   },
+  
   pages: {
     signIn: "/login",
   },

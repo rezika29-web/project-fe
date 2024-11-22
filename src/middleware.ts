@@ -24,6 +24,9 @@ export async function middleware(request: NextRequest) {
   if (!token && !authCookie && !isPublicPage) {
     return NextResponse.redirect(new URL('/user/home', request.url));
   }
+  if (token && authCookie && isAuthPage) {
+    return NextResponse.redirect(new URL('/adminhome/sso', request.url));
+  }
 
   return NextResponse.next();
 }

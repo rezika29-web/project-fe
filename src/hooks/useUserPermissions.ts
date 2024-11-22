@@ -5,14 +5,14 @@ import { useSession } from 'next-auth/react';
 import { api } from '@/lib/api';
 
 // Define more specific types
-type PermissionActions = {
-  showMenu: boolean;
-  create: boolean;
-  read: boolean;
-  update: boolean;
-  delete: boolean;
-  export: boolean;
-};
+// type PermissionActions = {
+//   showMenu: boolean;
+//   create: boolean;
+//   read: boolean;
+//   update: boolean;
+//   delete: boolean;
+//   export: boolean;
+// };
 
 // type Permissions = {
 //   [key: string]: PermissionActions;

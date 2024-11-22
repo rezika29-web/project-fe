@@ -1,13 +1,14 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { Alert } from 'antd';
+// import { Alert } from 'antd';
 import { useUserPermissions, UserInfo } from '@/hooks/useUserPermissions';
 
 interface WithAuthProps {
   userInfo: UserInfo | null;
 }
 
-const withAuth = <P extends object>(WrappedComponent: React.ComponentType<P & WithAuthProps>, requiredPermission: string) => {
+// const withAuth = <P extends object>(WrappedComponent: React.ComponentType<P & WithAuthProps>, requiredPermission: string) => {
+  const withAuth = <P extends object>(WrappedComponent: React.ComponentType<P & WithAuthProps>) => {
   return function AuthComponent(props: P) {
     const { data: session, status } = useSession();
     const router = useRouter();

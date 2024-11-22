@@ -7,7 +7,7 @@ import { NstPagination } from '@/components/NstPagination';
 import { api } from '@/lib/api';
 import { useRouter } from 'next/navigation';
 import withAuth from '@/components/withAuth';
-import { useUserPermissions } from '@/hooks/useUserPermissions';
+// import { useUserPermissions } from '@/hooks/useUserPermissions';
 
 const { Title } = Typography;
 
@@ -305,4 +305,4 @@ const TabelPengguna: React.FC = () => {
   );
 };
 
-export default withAuth(TabelPengguna, 'Management - Pengguna');
+export default withAuth(TabelPengguna);

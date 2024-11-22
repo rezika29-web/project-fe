@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { theme } from 'antd';
-import { useRouter } from 'next/navigation';
+import React, {  useEffect } from 'react';
+// import { theme } from 'antd';
+// import { useRouter } from 'next/navigation';
 
-const { useToken } = theme;
+// const { useToken } = theme;
 
 const CustomButton: React.FC<{ children: React.ReactNode; className?: string; onClick?: () => void }> = ({ children, className = '', onClick }) => (
   <button
@@ -15,7 +15,7 @@ const CustomButton: React.FC<{ children: React.ReactNode; className?: string; on
   </button>
 );
 const RouterSSO: React.FC = () => {
-  const router = useRouter();
+  // const router = useRouter();
   useEffect(() => {
     const hasRefreshed = localStorage.getItem('hasRefreshed');
     if (!hasRefreshed) {

@@ -7,7 +7,7 @@ import { NstPagination } from '@/components/NstPagination';
 import { api } from '@/lib/api';
 import { useRouter } from 'next/navigation';
 import withAuth from '@/components/withAuth';
-import { useUserPermissions } from '@/hooks/useUserPermissions';
+// import { useUserPermissions } from '@/hooks/useUserPermissions';
 
 const { Title } = Typography;
 
@@ -43,7 +43,7 @@ interface ApiError {
 
 const TabelPengguna: React.FC = () => {
   const router = useRouter();
-  const userInfo = useUserPermissions();
+  // const userInfo = useUserPermissions();
   const [searchText, setSearchText] = useState('');
   const [data, setData] = useState<Pengguna[]>([]);
   const [totalItems, setTotalItems] = useState(0);
@@ -51,9 +51,9 @@ const TabelPengguna: React.FC = () => {
   const [pageSize, setPageSize] = useState(10);
   const [searchKeyword, setSearchKeyword] = useState('');
 
-  const canCreate = userInfo?.permissions['Management - Pengguna']?.create || false;
-  const canUpdate = userInfo?.permissions['Management - Pengguna']?.update || false;
-  const canDelete = userInfo?.permissions['Management - Pengguna']?.delete || false;
+  // const canCreate = userInfo?.permissions['Management - Pengguna']?.create || false;
+  // const canUpdate = userInfo?.permissions['Management - Pengguna']?.update || false;
+  // const canDelete = userInfo?.permissions['Management - Pengguna']?.delete || false;
 
   useEffect(() => {
     fetchData(currentPage, pageSize, searchKeyword);
@@ -147,14 +147,12 @@ const TabelPengguna: React.FC = () => {
             <Button
               icon={<EditOutlined />}
               onClick={() => handleEdit(record.id)}
-              className={`text-[#2E7628] border-[#DBDBDE] ${canUpdate ? 'hover:text-white hover:bg-blue-600' : ''}`}
-              disabled={!canUpdate}
+              className={`text-[#2E7628] border-[#DBDBDE] hover:text-white hover:bg-blue-600`}
             />
             <Button
               icon={<DeleteOutlined />}
               onClick={() => handleDelete(record.id)}
-              className={`text-[#2E7628] border-[#DBDBDE] ${canDelete ? 'hover:text-white hover:bg-blue-600' : ''}`}
-              disabled={!canDelete}
+              className={`text-[#2E7628] border-[#DBDBDE] hover:text-white hover:bg-blue-600`}
             />
           </Button.Group>
         </div>
@@ -243,9 +241,8 @@ const TabelPengguna: React.FC = () => {
               <Button 
                 type="primary" 
                 onClick={handleTambahBaru} 
-                disabled={!canCreate}
               >
-                + Tambah Baru{!canCreate? ' (Tidak ada izin)' : ''}
+                + Tambah Baru
               </Button>
             </Space>
           </div>
@@ -292,4 +289,4 @@ const TabelPengguna: React.FC = () => {
   );
 };
 
-export default withAuth(TabelPengguna, 'Management - Pengguna');
+export default withAuth(TabelPengguna);

@@ -21,18 +21,20 @@ const DashboardLayoutContent = ({
 
   const router = useRouter();
 
-  const CustomButton: React.FC<{
-    children: React.ReactNode;
+  interface CustomButtonProps {
     className?: string;
-    onClick?: () => void;
-  }> = ({ children, className = "", onClick }) => (
-    <button
-      className={`px-4 py-2 rounded font-semibold transition-colors duration-200 ${className}`}
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    children: React.ReactNode;
+  }
+  
+  const CustomButton: React.FC<CustomButtonProps> = ({ className, onClick, children }) => {
+    return (
+      <button className={className} onClick={onClick}>
+        {children}
+      </button>
+    );
+  };
+  
 
   // if (status === "loading") {
   //   return <p>Loading...</p>;

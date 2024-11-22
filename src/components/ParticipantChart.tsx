@@ -58,7 +58,11 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-const ParticipantChart = ({ data, totalParticipants }) => {
+type ParticipantChartProps = {
+  data: { date: string; participants: number }[];
+};
+
+const ParticipantChart: React.FC<ParticipantChartProps> = ({ data }) => {
   return (
     <div className="p-4 bg-white shadow-md rounded-md">
       {/* Total partisipan */}
@@ -69,12 +73,16 @@ const ParticipantChart = ({ data, totalParticipants }) => {
           <YAxis 
             label={{ value: 'Participants (x10)', angle: -90, position: 'insideLeft' }}
           />
-          <Tooltip formatter={(value) => `${value * 10}`} labelFormatter={(label) => `Month: ${label}`} />
+          <Tooltip 
+            formatter={(value: number) => `${value * 10}`} 
+            labelFormatter={(label: string) => `Month: ${label}`} 
+          />
           <Line type="monotone" dataKey="participants" stroke="#8884d8" />
         </LineChart>
       </ResponsiveContainer>
     </div>
   );
 };
+
 
 export default ParticipantChart;

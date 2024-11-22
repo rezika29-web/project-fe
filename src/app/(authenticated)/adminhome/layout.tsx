@@ -1,6 +1,6 @@
 "use client";
 
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
 import { SessionProvider, signOut } from "next-auth/react";
 import { Source_Sans_3 } from "next/font/google";
 import "@fontsource/source-sans-3"; // Defaults to weight 400
@@ -34,18 +34,33 @@ const AdminLayoutContent = ({ children }: { children: React.ReactNode }) => {
   const userInfo = useUserPermissions();
   console.log(userInfo);
 
-  const CustomButton: React.FC<{
-    children: React.ReactNode;
+  // const CustomButton: React.FC<{
+  //   children: React.ReactNode;
+  //   className?: string;
+  //   onClick?: () => void;
+  // }> = ({ children, className = "flex", onClick }) => (
+  //   <button
+  //     className={`flex px-4 py-2 rounded font-semibold transition-colors duration-200 ${className}`}
+  //     onClick={onClick}
+  //   >
+  //     {children}
+  //   </button>
+  // );
+
+  interface CustomButtonProps {
     className?: string;
-    onClick?: () => void;
-  }> = ({ children, className = "flex", onClick }) => (
-    <button
-      className={`flex px-4 py-2 rounded font-semibold transition-colors duration-200 ${className}`}
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    children: React.ReactNode;
+  }
+  
+  const CustomButton: React.FC<CustomButtonProps> = ({ className, onClick, children }) => {
+    return (
+      <button className={className} onClick={onClick}>
+        {children}
+      </button>
+    );
+  };
+  
 
   // if (status === "loading") {
   //   return <p>Loading...</p>;
@@ -60,18 +75,23 @@ const AdminLayoutContent = ({ children }: { children: React.ReactNode }) => {
   };
   const userMenu = (
     <Menu>
-       <Menu.Item key="homepage" onClick={() => router.push("/user/home")}>
+      <Menu.Item key="homepage" onClick={() => router.push("/user/home")}>
         Home Page
       </Menu.Item>
-      {userInfo?.role?.roleName === 'Admin' ? (
-      <Menu.Item key="dashboard" onClick={() => router.push("/dashboard/management/pengguna/daftar")}>
-        Dashboard
-      </Menu.Item>
-
-      ):(
-        <Menu.Item key="dashboard" onClick={() => router.push("/dashboard/setting/acount/daftar")}>
-        Dashboard
-      </Menu.Item> 
+      {userInfo?.role?.roleName === "Admin" ? (
+        <Menu.Item
+          key="dashboard"
+          onClick={() => router.push("/dashboard/management/pengguna/daftar")}
+        >
+          Dashboard
+        </Menu.Item>
+      ) : (
+        <Menu.Item
+          key="dashboard"
+          onClick={() => router.push("/dashboard/setting/acount/daftar")}
+        >
+          Dashboard
+        </Menu.Item>
       )}
       <Menu.Item key="logout" onClick={handleLogout}>
         Logout

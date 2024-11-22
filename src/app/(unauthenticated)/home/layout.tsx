@@ -1,16 +1,12 @@
 'use client';
 
-import { NstAuthWrapper } from '@/components/NstAuthWrapper';
+// import { NstAuthWrapper } from '@/components/NstAuthWrapper';
 import { BreadcrumbProvider } from '@/contexts/NstBreadcrumbContext';
-import { useSession, signOut } from 'next-auth/react';
+// import { useSession, signOut } from 'next-auth/react';
 
 import React from 'react';
-import { Layout, Menu, theme, Avatar, Badge, Breadcrumb } from 'antd';
+import { Layout, Menu, Avatar, Badge, Breadcrumb } from 'antd';
 import {
-  DashboardOutlined,
-  TeamOutlined,
-  SwapOutlined,
-  FileTextOutlined,
   UserOutlined,
   BarChartOutlined,
   FileSearchOutlined,
@@ -23,7 +19,7 @@ import {
   BellOutlined,
 } from '@ant-design/icons';
 import Image from 'next/image';
-import { redirect } from 'next/navigation';
+// import { redirect } from 'next/navigation';
 
 
 const { Header, Sider, Content } = Layout;
@@ -69,7 +65,7 @@ const DashboardLayoutContent = ({ children }: { children: React.ReactNode }) => 
               <div className="text-xs font-semibold">Admin-BIRO-UMUM</div>
               <div className="text-xs">ADMIN</div>
             </div>
-            <Avatar size="large" icon={<UserOutlined />} className="mr-5" onClick={handleLogout} />
+            <Avatar size="large" icon={<UserOutlined />} className="mr-5"/>
             <div className="w-[60px] h-[60px] border border-[#EFF0F1] rounded-lg flex items-center justify-center">
               <Badge count={5}>
                 <BellOutlined style={{ fontSize: '20px' }} />
@@ -152,8 +148,8 @@ const DashboardLayoutContent = ({ children }: { children: React.ReactNode }) => 
               margin: '24px 16px',
               padding: 24,
               minHeight: 280,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
+              // background: colorBgContainer,
+              // borderRadius: borderRadiusLG,
             }}
           >
             <Breadcrumb

@@ -7,7 +7,7 @@ import { NstPagination } from '@/components/NstPagination';
 import { api } from '@/lib/api';
 import { useRouter } from 'next/navigation';
 import withAuth from '@/components/withAuth';
-import { useUserPermissions } from '@/hooks/useUserPermissions';
+// import { useUserPermissions } from '@/hooks/useUserPermissions';
 
 const { Title } = Typography;
 
@@ -37,7 +37,7 @@ interface ApiError {
 
 const TabelRole: React.FC = () => {
   const router = useRouter();
-  const userInfo = useUserPermissions();
+  // const userInfo = useUserPermissions();
   const [searchText, setSearchText] = useState('');
   const [data, setData] = useState<Role[]>([]);
   const [totalItems, setTotalItems] = useState(0);
@@ -276,4 +276,4 @@ const TabelRole: React.FC = () => {
   );
 };
 
-export default withAuth(TabelRole, 'Management - Role');
+export default withAuth(TabelRole);
