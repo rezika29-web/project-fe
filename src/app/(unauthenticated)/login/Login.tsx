@@ -2,22 +2,22 @@
 
 import { useRouter } from 'next/navigation';
 import { signIn } from "next-auth/react";
-import { FormEvent, useState } from "react";
+import { FormEvent } from "react";
 import Image from 'next/image';
 
 export default function Login() {
   const router = useRouter();
-  const [showError, setShowError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  // const [showError, setShowError] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState('');
 
 
 
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLoading(true);
-    setShowError(false);
+    // setIsLoading(true);
+    // setShowError(false);
     const formData = new FormData(e.currentTarget);
     console.log("datainput", formData);
     
@@ -27,9 +27,11 @@ export default function Login() {
       redirect: false,
     });
     if (result?.error) {
-      setShowError(true);
-      setErrorMessage("wkwkwk");
-      setIsLoading(false);
+      console.log(result?.error);
+      
+      // setShowError(true);
+      // setErrorMessage("wkwkwk");
+      // setIsLoading(false);
       
     } else {
       router.replace('/adminhome/sso');
@@ -37,7 +39,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-indigo-900 bg-cover bg-center" style={{backgroundImage: "url('/biro-images/auth/bendi.jpg')"}}>
+    <div className="min-h-screen flex flex-col bg-indigo-900 bg-cover bg-center" style={{backgroundImage: "url('/biro-images/auth/Kantor_Gubernur_Sumbar_belakang.jpg')"}}>
       <header className="p-4 flex flex-row">
         <Image src="/biro-images/logo-pemprov.png" alt="Logo" width={40} height={40} />
 
@@ -58,12 +60,12 @@ export default function Login() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label htmlFor="nip" className="block text-sm font-medium text-gray-700">NIP *</label>
-                <input id="nip" name="nip" type="text" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="Masukkan NIP" />
+                <input id="nip" name="nip" type="text" required className="mt-1 block w-full rounded-md text-black border-gray-300  focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="Masukkan NIP" />
               </div>
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">Kata Sandi *</label>
                 <div className="relative">
-                  <input id="password" name="password" type="password" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="Masukkan Kata Sandi" />
+                  <input id="password" name="password" type="password" required className="mt-1 block w-full text-black rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="Masukkan Kata Sandi" />
                 </div>
               </div>
               <a href="#" className="block text-sm text-green-600 hover:underline">Lupa Kata Sandi?</a>

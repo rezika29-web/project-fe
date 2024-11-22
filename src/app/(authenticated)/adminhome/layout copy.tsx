@@ -20,7 +20,7 @@ const DashboardLayoutContent = ({ children }: { children: React.ReactNode }) => 
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  const { data: session, status } = useSession({
+  const { status } = useSession({
     // const { data: session, status } = useSession({
     required: true,
     onUnauthenticated() {
