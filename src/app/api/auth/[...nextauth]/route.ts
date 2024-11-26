@@ -28,7 +28,7 @@ const handler = NextAuth({
         console.log("data",credentials);
         
         // Make a request to your Express.js backend to verify credentials
-        const res = await fetch("https://project-fe-production.up.railway.app/v1/auth/login", {
+        const res = await fetch("https://project-be-production-81c4.up.railway.app/v1/auth/login", {
           // const res = await fetch("http://127.0.0.1:1234/v1/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
