@@ -12,7 +12,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     axios
-      .get("https://sipintas-plus.biroumumsumbar.com/api/public/rentpublic/rent")
+      .get("https://sipintas-plus.biroumumsumbar.com/api/public/rent")
       .then((response) => {
         // Proses data untuk grafik
         const processedData = response.data
