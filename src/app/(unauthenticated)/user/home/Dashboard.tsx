@@ -77,29 +77,14 @@ export default function Dashboard() {
     <div className="p-6">
       <div className="flex-col mb-6">
         <div className="flex-col mb-10 justify-center">
-          <div className="flex-row justify-center text-center items-center p-4 bg-white w-full shadow-md rounded-md">
-            <h1 style={{}} className="mb-10 text-2xl font-extrabold">
-              Jumlah Pemanfaatan Ruangan Di Lingkungan Kantor Gubernur Sumatera
-              Barat
-            </h1>
-            <h1 style={{}} className="mb-10 text-2xl font-extrabold">
-              Periode September - Desember 2024
-            </h1>
-
-            <h2 className="text-2xl font-bold text-center mb-4">
-              Total Participants: {totalParticipants}
-            </h2>
-            <ParticipantChart
-              data={chartData}
-            />
-          </div>
+          
           <div className="flex-row mt-10 justify-center text-center items-center p-4 bg-white w-full shadow-md rounded-md">
             <h1 style={{}} className="mb-10 text-2xl font-extrabold">
               Jumlah Pemanfaatan Ruangan Di Lingkungan Kantor Gubernur Sumatera
               Barat
             </h1>
             <h1 style={{}} className="mb-10 text-2xl font-extrabold">
-              Periode Januari - Agustus 2024
+              Periode Januari - November 2024
             </h1>
             <BarChartComponent
               data={facilityData}
@@ -114,13 +99,29 @@ export default function Dashboard() {
               Barat
             </h1>
             <h1 style={{}} className="mb-10 text-2xl font-extrabold">
-              Periode Januari - Agustus 2024
+              Periode Januari - November 2024
             </h1>
             <BarChartComponent
               data={facilityData}
               dataKey="jumlah_peserta"
               title="Jumlah Peserta per Fasilitas"
               color="#8884d8"
+            />
+          </div>
+          <div className="flex-row justify-center text-center items-center p-4 bg-white w-full shadow-md rounded-md">
+            <h1 style={{}} className="mb-10 text-2xl font-extrabold">
+              Jumlah Pemanfaatan Ruangan Di Lingkungan Kantor Gubernur Sumatera
+              Barat
+            </h1>
+            <h1 style={{}} className="mb-10 text-2xl font-extrabold">
+              Periode September - Desember 2024
+            </h1>
+
+            <h2 className="text-2xl font-bold text-center mb-4">
+              Total Participants: {totalParticipants}
+            </h2>
+            <ParticipantChart
+              data={chartData}
             />
           </div>
         </div>
