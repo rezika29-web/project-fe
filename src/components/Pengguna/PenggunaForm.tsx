@@ -216,7 +216,7 @@ const RoleForm: React.FC<RoleFormProps> = ({ id, mode }) => {
                   label={<span style={{ color: '#000000' }}>NIP</span>}
                   rules={[
                     { required: true, message: 'nip is required' },
-                    { type: 'number', message: 'Please enter a valid nip' }
+                    // { type: 'number', message: 'Please enter a valid nip' }
                   ]}
                 >
                   <Input placeholder="Masukkan NIP" disabled={!!success} />

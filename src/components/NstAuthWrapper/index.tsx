@@ -24,7 +24,7 @@ export const NstAuthWrapper: React.FC<NstAuthWrapperProps> = ({ children }) => {
   }
 
   if (!session) {
-    router.push("/");
+    router.push("/user/home");
     return null;
   }
 
