@@ -99,6 +99,7 @@ const RoleForm: React.FC<RoleFormProps> = ({ id, mode }) => {
     try {
       let response;
       if (mode === 'add') {
+        
         response = await api.post('/v1/users', {
           fullName: values.fullName,
           phoneNumber: values.phoneNumber,
@@ -108,6 +109,7 @@ const RoleForm: React.FC<RoleFormProps> = ({ id, mode }) => {
           roleId: values.roleId,
         });
       } else {
+        console.log("value",values);
         response = await api.put(`/v1/users/${id}`, {
           fullName: values.fullName,
           phoneNumber: values.phoneNumber,
