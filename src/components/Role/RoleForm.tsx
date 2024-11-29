@@ -60,7 +60,8 @@ const RoleForm: React.FC<RoleFormProps> = ({ id, mode }) => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [initialData, setInitialData] = useState<RoleData | null>(null);
-  const [roleData, setRoleData] = useState<RoleData | null>(null);
+  const [setRoleData] = useState<RoleData | null>(null);
+  // const [roleData, setRoleData] = useState<RoleData | null>(null);
   const [redirecting, setRedirecting] = useState(false);
 
   // const defaultPermissions: Record<string, Permission> = {
