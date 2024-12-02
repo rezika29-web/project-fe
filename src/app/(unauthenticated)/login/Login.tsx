@@ -28,7 +28,7 @@ export default function Login() {
       console.log(result?.error);
 
       setShowError(true);
-      setErrorMessage("wkwkwk");
+      setErrorMessage("Something error,\nmaybe NIP / password wrong");
       setIsLoading(false);
     } else {
       router.replace("/adminhome/sso");
