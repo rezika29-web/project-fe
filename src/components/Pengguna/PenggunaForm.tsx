@@ -106,6 +106,7 @@ const RoleForm: React.FC<RoleFormProps> = ({ id, mode }) => {
           status: values.status,
           nip: values.nip,
           password: values.password,
+          retypePassword: values.password,
           roleId: values.roleId,
         });
       } else {
