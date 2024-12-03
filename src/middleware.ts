@@ -8,7 +8,7 @@ export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request });
   const authCookie = request.cookies.get('next-auth.session-token');
   // const isAuthPage = request.nextUrl.pathname.startsWith('/(unauthenticated)');
-  const isPublicPage = ['/user/home','/login', '/register', '/forgot-password','/adminhome/sso'].includes(request.nextUrl.pathname);
+  const isPublicPage = ['/user/home','/login', '/register', '/forgot-password','/adminhome/sso','/dashboard/management/pengguna','/dashboard/management/role','/dashboard/setting/acount'].includes(request.nextUrl.pathname);
   const isAuthPage = ['/user/home','/login', '/register', '/forgot-password','/adminhome','/dashboard'].includes(request.nextUrl.pathname);
 
   if (isPublicPage) {
