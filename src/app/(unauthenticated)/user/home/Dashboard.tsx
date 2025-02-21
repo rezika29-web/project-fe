@@ -57,7 +57,7 @@ export default function Dashboard() {
         const response = await axios.get(
           "https://my-json-server.typicode.com/rezika29-web/apiChart/fasilitas"
         );
-        console.log(response.data);
+        console.log("data baru",response.data);
         
         setFacilityData(response.data); 
       } catch (error) {
