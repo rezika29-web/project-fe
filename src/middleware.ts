@@ -8,13 +8,13 @@ export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request });
   const authCookie = request.cookies.get('next-auth.session-token');
   // const isAuthPage = request.nextUrl.pathname.startsWith('/(unauthenticated)');
-  const isPublicPage = ['/user/home','/user/dokumentasi','/login', '/register', '/forgot-password'].includes(request.nextUrl.pathname);
+  const isPublicPage = ['/user/home','/login', '/register', '/forgot-password','/adminhome/sso','/dashboard/management/pengguna/daftar','/dashboard/management/pengguna/edit','/dashboard/management/pengguna/tambah','/dashboard/management/role/daftar','/dashboard/management/role/tambah','/dashboard/management/role/edit','/dashboard/setting/acount/daftar','/dashboard/setting/acount/edit','/dashboard/setting/acount/tambah'].includes(request.nextUrl.pathname);
   const isAuthPage = ['/user/home','/login', '/register', '/forgot-password','/adminhome','/dashboard'].includes(request.nextUrl.pathname);
 
   if (isPublicPage) {
     if (token || authCookie) {
       // Only redirect if it's not the form-penilaian-360 page
-      if (!request.nextUrl.pathname.startsWith('/')) {
+      if (!request.nextUrl.pathname.startsWith('/user/home')) {
         return NextResponse.redirect(new URL(landingPagePath, request.url));
       }
     }
