@@ -8,6 +8,7 @@ export default function Dashboard() {
   const [chartData, setChartData] = useState([]);
   const [totalParticipants, setTotalParticipants] = useState(0);
   const [facilityData, setFacilityData] = useState([]);
+  const [chartNew, setChartNew] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -68,6 +69,25 @@ export default function Dashboard() {
 
     fetchData();
   }, []);
+  useEffect(() => {
+    // Fetch data dari API
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://sipintas-plus.biroumumsumbar.com/api/public/rent-summary"
+        );
+        console.log(response.data);
+        
+        setChartNew(response.data); 
+      } catch (error) {
+        console.error("Error fetching data from API:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   if (isLoading) {
     return <p className="text-center">Loading data...</p>;
@@ -84,7 +104,7 @@ export default function Dashboard() {
               Barat
             </h1>
             <h1 style={{}} className="mb-10 text-2xl font-extrabold">
-              Periode Januari - November 2024
+              Periode Januari - Desember 2024
             </h1>
             <BarChartComponent
               data={facilityData}
@@ -99,7 +119,7 @@ export default function Dashboard() {
               Barat
             </h1>
             <h1 style={{}} className="mb-10 text-2xl font-extrabold">
-              Periode Januari - November 2024
+              Periode Januari - Desember 2024
             </h1>
             <BarChartComponent
               data={facilityData}

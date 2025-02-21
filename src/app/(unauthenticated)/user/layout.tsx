@@ -72,6 +72,25 @@ const DashboardLayoutContent = ({
             {/* <div className="text-sm font-bold">Badan Pengembangan Sumber Daya Manusia Perhubungan</div> */}
           </div>
         </div>
+          <div className="flex items-center">
+          <div className="mr-4">
+              <CustomButton
+                // className="text-white bg-[#2E7628] hover:bg-green-700"
+              className="text-sm px-2 py-1 text-white bg-green-500 hover:bg-green-700 flex items-center"
+                onClick={() => router.push("home")}
+              >
+                Home
+              </CustomButton>
+            </div>
+            <div className="mr-4">
+              <CustomButton
+                // className="text-white bg-[#2E7628] hover:bg-green-700"
+              className="text-sm px-2 py-1 text-white bg-green-500 hover:bg-green-700 flex items-center"
+                onClick={() => router.push("dokumentasi")}
+              >
+                Dokumentasi
+              </CustomButton>
+            </div>
         {userInfo ? (
           <Dropdown overlay={userMenu} trigger={["click"]}>
             <CustomButton
@@ -83,6 +102,7 @@ const DashboardLayoutContent = ({
             </CustomButton>
           </Dropdown>
         ) : ''}
+          </div>
         {/* <div className="flex items-center">
             <div className="mr-4 text-right bg-black">
               <CustomButton
