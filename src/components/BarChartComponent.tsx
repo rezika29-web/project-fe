@@ -3,7 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 
 interface BarChartProps {
   data: { category: string; [key: string]: number | string }[]; // Tipe data untuk chart
-  dataKey: string; 
+  dataKey: number; 
   title: string; 
   color: string; 
 }
@@ -24,7 +24,7 @@ const BarChartComponent: React.FC<BarChartProps> = ({ data, dataKey, title, colo
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="category" />
-          <YAxis />
+          <YAxis domain={[0, Math.max(...data.map(d => d[dataKey]))]} />
           <Tooltip />
           <Legend />
           <Bar dataKey={dataKey} fill={color}>

@@ -9,6 +9,8 @@ export default function Dashboard() {
   const [totalParticipants, setTotalParticipants] = useState(0);
   const [facilityData, setFacilityData] = useState([]);
   const [chartNew, setChartNew] = useState([]);
+  const [rentNew, setRentNew] = useState([]);
+  const [participantsRentNew, setParticipantsRentNew] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -88,6 +90,44 @@ export default function Dashboard() {
 
     fetchData();
   }, []);
+  useEffect(() => {
+    // Fetch data dari API
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://sipintas-plus.biroumumsumbar.com/api/public/all-rent-summary"
+        );
+        console.log(response.data);
+        
+        setRentNew(response.data); 
+      } catch (error) {
+        console.error("Error fetching data from API:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+  useEffect(() => {
+    // Fetch data dari API
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://sipintas-plus.biroumumsumbar.com/api/public/all-participant-summary"
+        );
+        console.log(response.data);
+        
+        setParticipantsRentNew(response.data); 
+      } catch (error) {
+        console.error("Error fetching data from API:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   if (isLoading) {
     return <p className="text-center">Loading data...</p>;
@@ -128,13 +168,73 @@ export default function Dashboard() {
               color="#8884d8"
             />
           </div>
+          <div className="flex-row mt-10 justify-center text-center items-center p-4 bg-white w-full shadow-md rounded-md">
+            <h1 style={{}} className="mb-10 text-2xl font-extrabold">
+              Jumlah Pemanfaatan Ruangan Di Lingkungan Kantor Gubernur Sumatera
+              Barat
+            </h1>
+            <h1 style={{}} className="mb-10 text-2xl font-extrabold">
+              Periode Januari 2025 - Sekarang
+            </h1>
+            <BarChartComponent
+              data={chartNew}
+              dataKey="jumlah_kegiatan"
+              title="Jumlah Kegiatan per Fasilitas"
+              color="#8884d8"
+            />
+          </div>
+          <div className="flex-row mt-10 justify-center text-center items-center p-4 bg-white w-full  shadow-md rounded-md">
+            <h1 style={{}} className="mb-10 text-2xl font-extrabold">
+              Jumlah Pemanfaatan Ruangan Di Lingkungan Kantor Gubernur Sumatera
+              Barat
+            </h1>
+            <h1 style={{}} className="mb-10 text-2xl font-extrabold">
+              Periode Januari 2025 - Sekarang
+            </h1>
+            <BarChartComponent
+              data={chartNew}
+              dataKey="jumlah_peserta"
+              title="Jumlah Peserta per Fasilitas"
+              color="#8884d8"
+            />
+          </div>
+          <div className="flex-row mt-10 justify-center text-center items-center p-4 bg-white w-full shadow-md rounded-md">
+            <h1 style={{}} className="mb-10 text-2xl font-extrabold">
+              Jumlah Pemanfaatan Fasilitas Di Lingkungan Kantor Gubernur Sumatera
+              Barat
+            </h1>
+            <h1 style={{}} className="mb-10 text-2xl font-extrabold">
+              Periode Januari 2025 - Sekarang
+            </h1>
+            <BarChartComponent
+              data={rentNew}
+              dataKey="jumlah_kegiatan"
+              title="Jumlah Kegiatan per Fasilitas"
+              color="#8884d8"
+            />
+          </div>
+          {/* <div className="flex-row mt-10 justify-center text-center items-center p-4 bg-white w-full  shadow-md rounded-md">
+            <h1 style={{}} className="mb-10 text-2xl font-extrabold">
+              Jumlah Pemanfaatan Fasilitas Di Lingkungan Kantor Gubernur Sumatera
+              Barat
+            </h1>
+            <h1 style={{}} className="mb-10 text-2xl font-extrabold">
+              Periode Januari 2025 - Sekarang
+            </h1>
+            <BarChartComponent
+              data={participantsRentNew}
+              dataKey="jumlah_peserta"
+              title="Jumlah Peserta per Fasilitas"
+              color="#8884d8"
+            />
+          </div> */}
           <div className="flex-row justify-center text-center items-center p-4 bg-white w-full shadow-md rounded-md">
             <h1 style={{}} className="mb-10 text-2xl font-extrabold">
               Jumlah Pemanfaatan Ruangan Di Lingkungan Kantor Gubernur Sumatera
               Barat
             </h1>
             <h1 style={{}} className="mb-10 text-2xl font-extrabold">
-              Periode September - Desember 2024
+              Periode September 2024 - Sekarang
             </h1>
 
             <h2 className="text-2xl font-bold text-center mb-4">
